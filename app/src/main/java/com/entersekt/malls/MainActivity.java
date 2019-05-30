@@ -9,12 +9,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private List<City> cities;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         new Presenter().getAllCities(response -> {});
+        CityLibrary cityLibrary = new CityLibrary(this);
+        List<City> cities = cityLibrary.getCities();
 
     }
 }
