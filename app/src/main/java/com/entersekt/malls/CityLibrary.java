@@ -11,28 +11,28 @@ import com.entersekt.malls.network.model.Shop;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
+
 import io.reactivex.schedulers.Schedulers;
 
-public class CityLibrary implements Contract.CityLibrary {
+public class CityLibrary implements ICityLibrary {
 
     private static RetrofitCityClient retrofitCityClient;
     private List<City> cities;
 
     public CityLibrary(Context context) {
         retrofitCityClient = RetrofitCityClient.getInstance(context);
-        fetchAllCities();
-    }
-
-    private void fetchAllCities() {
-        retrofitCityClient.fetchRemoteCityData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::setCities);
     }
 
     private void setCities(CityResponse response) {
         this.cities = response.getCities();
+    }
+
+    @Override
+    public void syncCityData() {
+        CityResponse cityResponse = retrofitCityClient.fetchRemoteCityData()
+                .subscribeOn(Schedulers.io())
+                .blockingGet();
+        setCities(cityResponse);
     }
 
     @Override
@@ -82,6 +82,19 @@ public class CityLibrary implements Contract.CityLibrary {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Shop> getShopsByCity(int cityId) {
+        List<Shop> shops = new ArrayList<>();
+        for (City city : cities) {
+            if (city.getId() == cityId) {
+                for (Mall mall : city.getMalls()) {
+                  shops.addAll(mall.getShops());
+                }
+            }
+        }
+        return shops;
     }
 
     @Override
