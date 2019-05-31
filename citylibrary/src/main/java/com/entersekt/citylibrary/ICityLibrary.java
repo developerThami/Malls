@@ -1,8 +1,8 @@
-package com.entersekt.malls;
+package com.entersekt.citylibrary;
 
-import com.entersekt.malls.network.model.City;
-import com.entersekt.malls.network.model.Mall;
-import com.entersekt.malls.network.model.Shop;
+import com.entersekt.citylibrary.network.model.City;
+import com.entersekt.citylibrary.network.model.Mall;
+import com.entersekt.citylibrary.network.model.Shop;
 
 import java.util.List;
 

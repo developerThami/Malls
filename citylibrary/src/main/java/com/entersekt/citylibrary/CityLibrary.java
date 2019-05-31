@@ -1,16 +1,16 @@
-package com.entersekt.malls;
+package com.entersekt.citylibrary;
 
 import android.content.Context;
 
-import com.entersekt.malls.network.RetrofitCityClient;
-import com.entersekt.malls.network.model.City;
-import com.entersekt.malls.network.model.CityResponse;
-import com.entersekt.malls.network.model.Mall;
-import com.entersekt.malls.network.model.Shop;
+import com.entersekt.citylibrary.network.RetrofitCityClient;
+import com.entersekt.citylibrary.network.model.City;
+import com.entersekt.citylibrary.network.model.CityResponse;
+import com.entersekt.citylibrary.network.model.Mall;
+import com.entersekt.citylibrary.network.model.Shop;
+
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 import io.reactivex.schedulers.Schedulers;
 

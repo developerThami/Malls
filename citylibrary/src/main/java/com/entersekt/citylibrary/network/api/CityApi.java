@@ -1,6 +1,7 @@
-package com.entersekt.malls.network.api;
+package com.entersekt.citylibrary.network.api;
 
-import com.entersekt.malls.network.model.CityResponse;
+
+import com.entersekt.citylibrary.network.model.CityResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

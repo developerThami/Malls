@@ -1,9 +1,10 @@
-package com.entersekt.malls.network;
+package com.entersekt.citylibrary.network;
 
 import android.content.Context;
 
-import com.entersekt.malls.network.api.CityApi;
-import com.entersekt.malls.network.model.CityResponse;
+import com.entersekt.citylibrary.network.api.CityApi;
+import com.entersekt.citylibrary.network.model.CityResponse;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -3,11 +3,13 @@ package com.entersekt.malls;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.entersekt.malls.network.model.City;
-import com.entersekt.malls.network.model.Mall;
-import com.entersekt.malls.network.model.Shop;
+import com.entersekt.citylibrary.CityLibrary;
+import com.entersekt.citylibrary.network.model.City;
+import com.entersekt.citylibrary.network.model.Mall;
+import com.entersekt.citylibrary.network.model.Shop;
 
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,13 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CityLibrary cityLibrary = new CityLibrary(this);
-
         cityLibrary.syncCityData();
-
-        List<City> cities = cityLibrary.getCities();
-        List<Mall> malls = cityLibrary.getMalls(1);
-        List<Shop> shops = cityLibrary.getShops(1);
-
 
     }
 }

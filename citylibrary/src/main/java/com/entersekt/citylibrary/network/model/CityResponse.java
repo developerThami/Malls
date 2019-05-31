@@ -1,4 +1,4 @@
-package com.entersekt.malls.network.model;
+package com.entersekt.citylibrary.network.model;
 
 import com.google.gson.annotations.SerializedName;
 

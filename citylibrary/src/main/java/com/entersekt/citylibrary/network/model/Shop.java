@@ -1,10 +1,8 @@
-package com.entersekt.malls.network.model;
+package com.entersekt.citylibrary.network.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class Mall {
+public class Shop {
 
     @SerializedName("id")
     private int id;
@@ -12,18 +10,11 @@ public class Mall {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("shops")
-    private List<Shop> shops;
-
     public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public List<Shop> getShops() {
-        return shops;
     }
 }

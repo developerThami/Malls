@@ -1,4 +1,4 @@
-package com.entersekt.malls.network;
+package com.entersekt.citylibrary.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
