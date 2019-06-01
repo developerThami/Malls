@@ -1,9 +1,7 @@
 package com.entersekt.malls;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.entersekt.citylibrary.network.model.City;
 import com.entersekt.citylibrary.network.model.Mall;
