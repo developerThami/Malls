@@ -4,6 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.entersekt.citylibrary.CityLibrary;
 import com.entersekt.citylibrary.network.model.Mall;
@@ -84,7 +87,10 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
 
     @Override
     public void onBackPressed() {
+        excecuteBackAction();
+    }
 
+    private void excecuteBackAction() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         int backStackEntryCount = fragmentManager.getBackStackEntryCount();
         if (backStackEntryCount >= 1) {
@@ -95,10 +101,18 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
                 finish();
             }
         }
-
     }
 
     private void enableBackNavigation() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            excecuteBackAction();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
