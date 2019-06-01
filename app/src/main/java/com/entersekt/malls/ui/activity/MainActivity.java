@@ -50,13 +50,12 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
     @Override
     public void onCitySelected(int cityId, String cityName) {
 
-        button.setVisibility(View.VISIBLE);
-
         this.selectedCityId = cityId;
         this.selectedCityName = cityName;
 
         List<Mall> malls = library.getMalls(cityId);
         if (malls != null) {
+            button.setVisibility(View.VISIBLE);
             enableBackNavigation();
             presenter.showMalls(malls, cityName);
         } else {
