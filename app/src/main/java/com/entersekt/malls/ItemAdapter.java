@@ -43,7 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ItemViewHolder holder = new ItemViewHolder(itemView);
         holder.nameView.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onItemSelect(i);
+                listener.onItemSelect(holder.getAdapterPosition());
             }
         });
 

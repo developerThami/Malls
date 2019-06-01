@@ -1,6 +1,7 @@
 package com.entersekt.malls.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,13 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.entersekt.malls.ItemAdapter;
-import com.entersekt.malls.MainActivity;
 import com.entersekt.malls.R;
-import com.entersekt.malls.UserAction;
+import com.entersekt.malls.listener.MallSelectActionListener;
+import com.entersekt.malls.listener.ShowCityShopsActionListener;
 
 import java.util.ArrayList;
 
 public class MallListFragment extends Fragment implements ItemAdapter.OnItemSelectListener {
+
+    private MallSelectActionListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,13 +35,23 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
+
+
         return view;
     }
 
     @Override
     public void onItemSelect(int mallId) {
-        MainActivity activity = (MainActivity) getActivity();
-        UserAction userAction = activity.getUserAction();
-        userAction.onMallSelected(mallId);
+        listener.onMallSelected(mallId);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (MallSelectActionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement MallSelectActionListener");
+        }
     }
 }

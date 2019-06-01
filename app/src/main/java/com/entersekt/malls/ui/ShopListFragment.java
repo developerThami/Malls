@@ -1,5 +1,6 @@
 package com.entersekt.malls.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.entersekt.malls.ItemAdapter;
 import com.entersekt.malls.R;
+
 import java.util.ArrayList;
 
 public class ShopListFragment extends Fragment{
