@@ -12,25 +12,29 @@ import android.view.ViewGroup;
 import com.entersekt.malls.adapter.ItemAdapter;
 import com.entersekt.malls.R;
 import com.entersekt.malls.listener.CitySelectActionListener;
-import com.entersekt.malls.ui.MainActivity;
+import com.entersekt.malls.ui.UiPresenter;
+import com.entersekt.malls.ui.activity.MainActivity;
 
 import java.util.ArrayList;
 
 public class CityListFragment extends Fragment implements ItemAdapter.OnItemSelectListener {
 
     CitySelectActionListener listener;
+    private static final String TITLE = "Cities";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view, container, false);
-
         MainActivity activity = (MainActivity) getActivity();
 
-        activity.getSupportActionBar().setTitle("Cities");
+        activity.getSupportActionBar().setTitle(TITLE);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        ArrayList<String> stringArrayList = getArguments() != null ? getArguments().getStringArrayList("key") : new ArrayList<>();
+        ArrayList<String> stringArrayList = getArguments() != null
+                ? getArguments().getStringArrayList(UiPresenter.KEY)
+                : new ArrayList<>();
+
         ItemAdapter adapter = new ItemAdapter(stringArrayList, this);
 
         RecyclerView recyclerView = view.findViewById(R.id.list);

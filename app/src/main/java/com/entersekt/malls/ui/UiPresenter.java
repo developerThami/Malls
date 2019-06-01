@@ -17,6 +17,7 @@ import java.util.List;
 public class UiPresenter implements IUiPresenter {
 
     private DisplayFragmentListener listener;
+    public static final String KEY = "key";
 
     public UiPresenter(DisplayFragmentListener listener) {
         this.listener = listener;
@@ -28,7 +29,7 @@ public class UiPresenter implements IUiPresenter {
         if (malls != null) {
             ArrayList<String> mallNames = getMallNames(malls);
             Bundle bundle = new Bundle();
-            bundle.putStringArrayList("key", mallNames);
+            bundle.putStringArrayList(KEY, mallNames);
             bundle.putString(MallListFragment.CITY_NAME, cityName);
 
             Fragment fragment = new MallListFragment();
@@ -43,7 +44,7 @@ public class UiPresenter implements IUiPresenter {
         if (shops != null) {
             ArrayList<String> shopNames = getShopNames(shops);
             Bundle bundle = new Bundle();
-            bundle.putStringArrayList("key", shopNames);
+            bundle.putStringArrayList(KEY, shopNames);
             bundle.putString(ShopListFragment.CITY_NAME, cityName);
 
             Fragment fragment = new ShopListFragment();
@@ -58,7 +59,7 @@ public class UiPresenter implements IUiPresenter {
         if (shops != null) {
             ArrayList<String> shopNames = getShopNames(shops);
             Bundle bundle = new Bundle();
-            bundle.putStringArrayList("key", shopNames);
+            bundle.putStringArrayList(KEY, shopNames);
             bundle.putString(ShopListFragment.MALL_NAME, mallName);
 
             Fragment fragment = new ShopListFragment();
@@ -72,7 +73,7 @@ public class UiPresenter implements IUiPresenter {
 
         ArrayList<String> cityNames = getCityNames(cities);
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("key", cityNames);
+        bundle.putStringArrayList(KEY, cityNames);
 
         Fragment fragment = new CityListFragment();
         fragment.setArguments(bundle);

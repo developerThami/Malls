@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import com.entersekt.malls.adapter.ItemAdapter;
 import com.entersekt.malls.R;
 import com.entersekt.malls.listener.MallSelectActionListener;
-import com.entersekt.malls.ui.MainActivity;
+import com.entersekt.malls.ui.UiPresenter;
+import com.entersekt.malls.ui.activity.MainActivity;
 
 import java.util.ArrayList;
 
@@ -21,22 +22,22 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
 
     private MallSelectActionListener listener;
     public static final String CITY_NAME = "mallName";
+    private static final String TITLE = " malls";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view, container, false);
-
         MainActivity activity = (MainActivity) getActivity();
 
-        ArrayList<String> stringArrayList = getArguments() != null ? getArguments().getStringArrayList("key") : new ArrayList<>();
+        ArrayList<String> stringArrayList = getArguments() != null
+                ? getArguments().getStringArrayList(UiPresenter.KEY)
+                : new ArrayList<>();
+
         String cityName = getArguments().getString(CITY_NAME);
+        activity.getSupportActionBar().setTitle(cityName.concat(TITLE));
 
-        activity.getSupportActionBar().setTitle(cityName.concat(" malls"));
-
-
-        ItemAdapter adapter = new ItemAdapter(stringArrayList,this);
+        ItemAdapter adapter = new ItemAdapter(stringArrayList, this);
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -48,7 +49,7 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
 
     @Override
     public void onItemSelect(int mallId, String mallName) {
-        listener.onMallSelected(mallId,mallName);
+        listener.onMallSelected(mallId, mallName);
     }
 
     @Override

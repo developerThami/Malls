@@ -1,4 +1,4 @@
-package com.entersekt.malls.ui;
+package com.entersekt.malls.ui.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +13,7 @@ import com.entersekt.malls.listener.CitySelectActionListener;
 import com.entersekt.malls.listener.DisplayFragmentListener;
 import com.entersekt.malls.listener.MallSelectActionListener;
 import com.entersekt.malls.listener.ShowCityShopsActionListener;
+import com.entersekt.malls.ui.UiPresenter;
 
 import java.util.List;
 

@@ -14,8 +14,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    List<String> items;
-
+    private List<String> items;
     private OnItemSelectListener listener;
 
     public interface OnItemSelectListener {

@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 
 import com.entersekt.malls.adapter.ItemAdapter;
 import com.entersekt.malls.R;
-import com.entersekt.malls.ui.MainActivity;
+import com.entersekt.malls.ui.UiPresenter;
+import com.entersekt.malls.ui.activity.MainActivity;
 
 import java.util.ArrayList;
 
@@ -18,21 +19,20 @@ public class ShopListFragment extends Fragment {
 
     public static final String CITY_NAME = "cityName";
     public static final String MALL_NAME = "mallName";
+    private static final String TITLE = " shops";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view, container, false);
-
         MainActivity activity = (MainActivity) getActivity();
 
         ArrayList<String> stringArrayList = getArguments() != null
-                ? getArguments().getStringArrayList("key")
+                ? getArguments().getStringArrayList(UiPresenter.KEY)
                 : new ArrayList<>();
 
         String cityName = getArguments().getString(MALL_NAME, getArguments().getString(CITY_NAME));
-        activity.getSupportActionBar().setTitle(cityName.concat(" shops"));
+        activity.getSupportActionBar().setTitle(cityName.concat(TITLE));
 
         ItemAdapter adapter = new ItemAdapter(stringArrayList);
 
