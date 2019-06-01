@@ -1,4 +1,4 @@
-package com.entersekt.malls;
+package com.entersekt.malls.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.entersekt.malls.R;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private OnItemSelectListener listener;
 
     public interface OnItemSelectListener {
-        void onItemSelect(int itemId);
+        void onItemSelect(int itemId, String itemName);
     }
 
     public ItemAdapter(List<String> items) {
@@ -43,7 +45,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ItemViewHolder holder = new ItemViewHolder(itemView);
         holder.nameView.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onItemSelect(holder.getAdapterPosition());
+                int adapterPosition = holder.getAdapterPosition();
+                listener.onItemSelect(adapterPosition, items.get(adapterPosition));
             }
         });
 

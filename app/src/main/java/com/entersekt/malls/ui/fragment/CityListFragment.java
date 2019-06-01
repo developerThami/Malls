@@ -1,4 +1,4 @@
-package com.entersekt.malls.ui;
+package com.entersekt.malls.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,9 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.entersekt.malls.ItemAdapter;
+
+import com.entersekt.malls.adapter.ItemAdapter;
 import com.entersekt.malls.R;
 import com.entersekt.malls.listener.CitySelectActionListener;
+import com.entersekt.malls.ui.MainActivity;
+
 import java.util.ArrayList;
 
 public class CityListFragment extends Fragment implements ItemAdapter.OnItemSelectListener {
@@ -22,8 +25,13 @@ public class CityListFragment extends Fragment implements ItemAdapter.OnItemSele
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view, container, false);
 
+        MainActivity activity = (MainActivity) getActivity();
+
+        activity.getSupportActionBar().setTitle("Cities");
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         ArrayList<String> stringArrayList = getArguments() != null ? getArguments().getStringArrayList("key") : new ArrayList<>();
-        ItemAdapter adapter = new ItemAdapter(stringArrayList,this);
+        ItemAdapter adapter = new ItemAdapter(stringArrayList, this);
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -34,8 +42,8 @@ public class CityListFragment extends Fragment implements ItemAdapter.OnItemSele
     }
 
     @Override
-    public void onItemSelect(int cityId) {
-        listener.onCitySelected(cityId);
+    public void onItemSelect(int cityId, String cityName) {
+        listener.onCitySelected(cityId, cityName);
     }
 
     @Override

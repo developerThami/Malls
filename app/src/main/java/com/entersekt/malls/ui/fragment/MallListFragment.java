@@ -1,4 +1,4 @@
-package com.entersekt.malls.ui;
+package com.entersekt.malls.ui.fragment;
 
 
 import android.content.Context;
@@ -10,16 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.entersekt.malls.ItemAdapter;
+import com.entersekt.malls.adapter.ItemAdapter;
 import com.entersekt.malls.R;
 import com.entersekt.malls.listener.MallSelectActionListener;
-import com.entersekt.malls.listener.ShowCityShopsActionListener;
+import com.entersekt.malls.ui.MainActivity;
 
 import java.util.ArrayList;
 
 public class MallListFragment extends Fragment implements ItemAdapter.OnItemSelectListener {
 
     private MallSelectActionListener listener;
+    public static final String CITY_NAME = "mallName";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +28,14 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view, container, false);
 
+        MainActivity activity = (MainActivity) getActivity();
+
         ArrayList<String> stringArrayList = getArguments() != null ? getArguments().getStringArrayList("key") : new ArrayList<>();
+        String cityName = getArguments().getString(CITY_NAME);
+
+        activity.getSupportActionBar().setTitle(cityName.concat(" malls"));
+
+
         ItemAdapter adapter = new ItemAdapter(stringArrayList,this);
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
@@ -35,14 +43,12 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-
-
         return view;
     }
 
     @Override
-    public void onItemSelect(int mallId) {
-        listener.onMallSelected(mallId);
+    public void onItemSelect(int mallId, String mallName) {
+        listener.onMallSelected(mallId,mallName);
     }
 
     @Override

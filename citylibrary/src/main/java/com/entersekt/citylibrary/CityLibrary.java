@@ -63,9 +63,12 @@ public class CityLibrary implements ICityLibrary {
     @Override
     public Mall getMall(int mallId) {
         for (City city : cities) {
-            for (Mall mall : city.getMalls()) {
-                if (mall.getId() == mallId) {
-                    return mall;
+            List<Mall> malls = city.getMalls();
+            if (malls != null) {
+                for (Mall mall : malls) {
+                    if (mall.getId() == mallId) {
+                        return mall;
+                    }
                 }
             }
         }
@@ -75,9 +78,12 @@ public class CityLibrary implements ICityLibrary {
     @Override
     public List<Shop> getShops(int mallId) {
         for (City city : cities) {
-            for (Mall mall : city.getMalls()) {
-                if (mall.getId() == mallId) {
-                    return mall.getShops();
+            List<Mall> malls = city.getMalls();
+            if (malls != null) {
+                for (Mall mall : malls) {
+                    if (mall.getId() == mallId) {
+                        return mall.getShops();
+                    }
                 }
             }
         }
@@ -89,8 +95,14 @@ public class CityLibrary implements ICityLibrary {
         List<Shop> shops = new ArrayList<>();
         for (City city : cities) {
             if (city.getId() == cityId) {
-                for (Mall mall : city.getMalls()) {
-                  shops.addAll(mall.getShops());
+                List<Mall> malls = city.getMalls();
+                if (malls != null) {
+                    for (Mall mall : malls) {
+                        List<Shop> mallShops = mall.getShops();
+                        if (mallShops != null) {
+                            shops.addAll(mallShops);
+                        }
+                    }
                 }
             }
         }
@@ -100,10 +112,16 @@ public class CityLibrary implements ICityLibrary {
     @Override
     public Shop getShop(int shopId) {
         for (City city : cities) {
-            for (Mall mall : city.getMalls()) {
-                for (Shop shop : mall.getShops()) {
-                    if (shop.getId() == shopId) {
-                        return shop;
+            List<Mall> malls = city.getMalls();
+            if (malls != null) {
+                for (Mall mall : malls) {
+                    List<Shop> mallShops = mall.getShops();
+                    if (mallShops != null) {
+                        for (Shop shop : mallShops) {
+                            if (shop.getId() == shopId) {
+                                return shop;
+                            }
+                        }
                     }
                 }
             }
