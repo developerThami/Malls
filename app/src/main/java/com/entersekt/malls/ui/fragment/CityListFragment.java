@@ -28,6 +28,8 @@ public class CityListFragment extends Fragment implements ItemAdapter.OnItemSele
         View view = inflater.inflate(R.layout.fragment_view, container, false);
         MainActivity activity = (MainActivity) getActivity();
 
+        activity.button.setVisibility(View.GONE);
+
         activity.getSupportActionBar().setTitle(TITLE);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 

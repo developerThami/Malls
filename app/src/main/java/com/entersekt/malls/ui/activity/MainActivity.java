@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.entersekt.citylibrary.CityLibrary;
 import com.entersekt.citylibrary.network.model.Mall;
@@ -27,10 +27,17 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
     private CityLibrary library;
     private UiPresenter presenter;
 
+    private int selectedCityId;
+    private String selectedCityName;
+    public Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        button = findViewById(R.id.showCitiesBtn);
+        button.setOnClickListener(v -> onShowCityShopsSelected(selectedCityId, selectedCityName));
 
         library = new CityLibrary(this);
         library.syncCityData();
@@ -42,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
 
     @Override
     public void onCitySelected(int cityId, String cityName) {
+
+        button.setVisibility(View.VISIBLE);
+
+        this.selectedCityId = cityId;
+        this.selectedCityName = cityName;
 
         List<Mall> malls = library.getMalls(cityId);
         if (malls != null) {
@@ -56,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
     @Override
     public void onMallSelected(int mallId, String mallName) {
 
+        button.setVisibility(View.INVISIBLE);
+
         List<Shop> shops = library.getShops(mallId);
         if (shops != null) {
             enableBackNavigation();
@@ -68,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
 
     @Override
     public void onShowCityShopsSelected(int cityId, String cityName) {
+
+        button.setVisibility(View.INVISIBLE);
 
         List<Shop> shopsByCity = library.getShopsByCity(cityId);
         if (shopsByCity != null) {
@@ -87,20 +103,22 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
 
     @Override
     public void onBackPressed() {
-        excecuteBackAction();
+        executeBackAction();
     }
 
-    private void excecuteBackAction() {
+    private void executeBackAction() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         int backStackEntryCount = fragmentManager.getBackStackEntryCount();
-        if (backStackEntryCount >= 1) {
 
+        if (backStackEntryCount >= 1) {
             if (backStackEntryCount != 1) {
                 fragmentManager.popBackStack();
             } else {
                 finish();
             }
         }
+
+
     }
 
     private void enableBackNavigation() {
@@ -111,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            excecuteBackAction();
+            executeBackAction();
         }
         return super.onOptionsItemSelected(item);
     }

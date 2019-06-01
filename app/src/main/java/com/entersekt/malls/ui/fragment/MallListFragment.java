@@ -30,6 +30,8 @@ public class MallListFragment extends Fragment implements ItemAdapter.OnItemSele
         View view = inflater.inflate(R.layout.fragment_view, container, false);
         MainActivity activity = (MainActivity) getActivity();
 
+        activity.button.setVisibility(View.VISIBLE);
+
         ArrayList<String> stringArrayList = getArguments() != null
                 ? getArguments().getStringArrayList(UiPresenter.KEY)
                 : new ArrayList<>();
