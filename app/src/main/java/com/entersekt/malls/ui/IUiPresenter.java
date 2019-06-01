@@ -11,4 +11,5 @@ public interface IUiPresenter {
     void showCityShops(List<Shop> shops, String cityName);
     void showShops(List<Shop> shops, String mallName);
     void showCities(List<City> city);
+    void showMessage(String message);
 }

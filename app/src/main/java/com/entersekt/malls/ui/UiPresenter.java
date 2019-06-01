@@ -1,7 +1,9 @@
 package com.entersekt.malls.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.entersekt.citylibrary.network.model.City;
 import com.entersekt.citylibrary.network.model.Mall;
@@ -16,11 +18,13 @@ import java.util.List;
 
 public class UiPresenter implements IUiPresenter {
 
+    private Context context;
     private DisplayFragmentListener listener;
     public static final String KEY = "key";
 
-    public UiPresenter(DisplayFragmentListener listener) {
+    public UiPresenter(DisplayFragmentListener listener, Context context) {
         this.listener = listener;
+        this.context = context;
     }
 
     @Override
@@ -78,6 +82,11 @@ public class UiPresenter implements IUiPresenter {
         Fragment fragment = new CityListFragment();
         fragment.setArguments(bundle);
         listener.showFragment(fragment);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     private ArrayList<String> getCityNames(List<City> cities) {

@@ -32,35 +32,47 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
         library = new CityLibrary(this);
         library.syncCityData();
 
-        presenter = new UiPresenter(this);
+        presenter = new UiPresenter(this, this);
         presenter.showCities(library.getCities());
 
     }
 
     @Override
     public void onCitySelected(int cityId, String cityName) {
-        enableBackNavigation();
+
         List<Mall> malls = library.getMalls(cityId);
         if (malls != null) {
+            enableBackNavigation();
             presenter.showMalls(malls, cityName);
+        } else {
+            String message = String.format("No malls found for %s", cityName);
+            presenter.showMessage(message);
         }
     }
 
     @Override
     public void onMallSelected(int mallId, String mallName) {
-        enableBackNavigation();
+
         List<Shop> shops = library.getShops(mallId);
         if (shops != null) {
+            enableBackNavigation();
             presenter.showShops(shops, mallName);
+        } else {
+            String message = String.format("No shops found for %s", mallName);
+            presenter.showMessage(message);
         }
     }
 
     @Override
     public void onShowCityShopsSelected(int cityId, String cityName) {
-        enableBackNavigation();
+
         List<Shop> shopsByCity = library.getShopsByCity(cityId);
         if (shopsByCity != null) {
+            enableBackNavigation();
             presenter.showCityShops(shopsByCity, cityName);
+        } else {
+            String message = String.format("No shops found for %s", cityName);
+            presenter.showMessage(message);
         }
     }
 
