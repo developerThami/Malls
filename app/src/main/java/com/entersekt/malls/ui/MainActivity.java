@@ -17,10 +17,11 @@ import com.entersekt.malls.listener.ShowCityShopsActionListener;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements DisplayFragmentListener, CitySelectActionListener, MallSelectActionListener, ShowCityShopsActionListener {
+public class MainActivity extends AppCompatActivity implements DisplayFragmentListener,
+        CitySelectActionListener, MallSelectActionListener, ShowCityShopsActionListener {
 
     private CityLibrary library;
-    private ViewPresenter presenter;
+    private UiPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements DisplayFragmentLi
         library = new CityLibrary(this);
         library.syncCityData();
 
-        presenter = new ViewPresenter(this);
+        presenter = new UiPresenter(this);
         presenter.showCities(library.getCities());
 
     }

@@ -14,11 +14,11 @@ import com.entersekt.malls.ui.fragment.ShopListFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPresenter implements IViewPresenter {
+public class UiPresenter implements IUiPresenter {
 
     private DisplayFragmentListener listener;
 
-    public ViewPresenter(DisplayFragmentListener listener) {
+    public UiPresenter(DisplayFragmentListener listener) {
         this.listener = listener;
     }
 
@@ -29,7 +29,7 @@ public class ViewPresenter implements IViewPresenter {
             ArrayList<String> mallNames = getMallNames(malls);
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("key", mallNames);
-            bundle.putString(MallListFragment.CITY_NAME,cityName);
+            bundle.putString(MallListFragment.CITY_NAME, cityName);
 
             Fragment fragment = new MallListFragment();
             fragment.setArguments(bundle);
@@ -44,7 +44,7 @@ public class ViewPresenter implements IViewPresenter {
             ArrayList<String> shopNames = getShopNames(shops);
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("key", shopNames);
-            bundle.putString(ShopListFragment.CITY_NAME,cityName);
+            bundle.putString(ShopListFragment.CITY_NAME, cityName);
 
             Fragment fragment = new ShopListFragment();
             fragment.setArguments(bundle);
@@ -59,7 +59,7 @@ public class ViewPresenter implements IViewPresenter {
             ArrayList<String> shopNames = getShopNames(shops);
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("key", shopNames);
-            bundle.putString(ShopListFragment.MALL_NAME,mallName);
+            bundle.putString(ShopListFragment.MALL_NAME, mallName);
 
             Fragment fragment = new ShopListFragment();
             fragment.setArguments(bundle);
